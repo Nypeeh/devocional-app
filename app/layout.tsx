@@ -1,6 +1,19 @@
 import type { Metadata } from "next";
 import Script from "next/script";
+import { Inter, Playfair_Display } from "next/font/google";
 import "./globals.css";
+
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+  display: "swap",
+});
+
+const playfair = Playfair_Display({
+  subsets: ["latin"],
+  variable: "--font-playfair",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: "Com Maria — Sua Companheira Espiritual no WhatsApp",
@@ -21,21 +34,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="pt-BR">
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap"
-          rel="stylesheet"
-        />
-      </head>
+    <html lang="pt-BR" className={`${inter.variable} ${playfair.variable}`}>
       <body className="antialiased">
         {children}
         <Script
           src="https://cdn.trackfyads.com/scripts/utms/latest.js"
           strategy="afterInteractive"
-          {...({ "omit-subids": "true", "omit-xcod": "true" } as any)}
+          data-omit-subids="true"
+          data-omit-xcod="true"
         />
         <Script id="trackfy-config" strategy="afterInteractive">
           {`window.pixelId = "cmori662d0002v80n92bbjdfm";`}
@@ -48,3 +54,4 @@ export default function RootLayout({
     </html>
   );
 }
+

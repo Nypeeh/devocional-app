@@ -1,9 +1,9 @@
 "use client";
-import { useState, useEffect, useRef, useCallback } from "react";
+import { useState, useEffect } from "react";
+import Image from "next/image";
 
 type Screen = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
 
-const TOTAL_QUIZ = 8;
 
 function getProgress(screen: Screen): number {
   const map: Record<number, number> = { 0: 0, 1: 20, 2: 40, 3: 60, 4: 70, 5: 80, 6: 85, 7: 90, 8: 95, 9: 100, 10: 100 };
@@ -11,8 +11,9 @@ function getProgress(screen: Screen): number {
 }
 
 function MaryIcon() {
-  return <img src="/logo.png" alt="Com Maria" style={{ height: "40px", objectFit: "contain" }} />;
+  return <Image src="/logo.png" alt="Com Maria" width={160} height={40} style={{ objectFit: "contain" }} />;
 }
+
 
 function ProgressBar({ pct }: { pct: number }) {
   return (
@@ -209,7 +210,8 @@ function Screen7({ name, onNext }: { name: string; onNext: () => void }) {
 }
 
 // SCREEN 8 — Transição
-function Screen8({ name, intention, onNext }: { name: string; intention: string; onNext: () => void }) {
+function Screen8({ intention, onNext }: { intention: string; onNext: () => void }) {
+
   const [barPct, setBarPct] = useState(0);
   const [done, setDone] = useState(false);
 
@@ -237,8 +239,9 @@ function Screen8({ name, intention, onNext }: { name: string; intention: string;
       {done && (
         <div style={{ animation: "fadeSlideIn 0.5s ease", width: "100%" }}>
           <div className="intention-display">
-            "Neste Devocional os caminhos se abrirão e o meu desejo de {intention || "uma vida plena"} será realizado em nome de Jesus pela intercessão de Nossa Senhora."
+            &quot;Neste Devocional os caminhos se abrirão e o meu desejo de {intention || "uma vida plena"} será realizado em nome de Jesus pela intercessão de Nossa Senhora.&quot;
           </div>
+
           <div style={{ fontSize: 80, marginBottom: 16 }}>🌸</div>
           <button className="btn-primary" onClick={onNext}>CONTINUAR →</button>
         </div>
@@ -326,7 +329,8 @@ function Screen9({ onNext }: { onNext: (plan: string) => void }) {
                 </div>
                 <div className="testimonial-stars" style={{ marginLeft: "auto" }}>★★★★★</div>
               </div>
-              <p className="testimonial-text">"{t.text}"</p>
+              <p className="testimonial-text">&quot;{t.text}&quot;</p>
+
             </div>
           ))}
         </div>
@@ -397,7 +401,8 @@ export default function Home() {
         {screen === 5 && <Screen5 name={answers.name} onNext={() => go(6)} />}
         {screen === 6 && <Screen6 name={answers.name} onNext={v => { setAnswers(a => ({ ...a, intention: v })); go(7); }} />}
         {screen === 7 && <Screen7 name={answers.name} onNext={() => go(8)} />}
-        {screen === 8 && <Screen8 name={answers.name} intention={answers.intention} onNext={() => go(9)} />}
+        {screen === 8 && <Screen8 intention={answers.intention} onNext={() => go(9)} />}
+
         {screen === 9 && <Screen9 onNext={v => {
           setAnswers(a => ({ ...a, plan: v }));
           if (v === "mensal") window.location.href = "https://pay.cakto.com.br/6zwb7c9_872899";
