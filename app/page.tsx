@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 
 type Screen = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
@@ -262,6 +262,42 @@ const features = [
 
 
 function Screen9() {
+  const carouselRef = useRef<HTMLDivElement>(null);
+  const dragRef = useRef({ isDown: false, startX: 0, scrollLeft: 0 });
+
+  const handleMouseDown = (e: React.MouseEvent) => {
+    if (!carouselRef.current) return;
+    dragRef.current.isDown = true;
+    dragRef.current.startX = e.pageX - carouselRef.current.offsetLeft;
+    dragRef.current.scrollLeft = carouselRef.current.scrollLeft;
+    carouselRef.current.style.scrollSnapType = 'none';
+    carouselRef.current.style.cursor = 'grabbing';
+  };
+
+  const handleMouseLeave = () => {
+    dragRef.current.isDown = false;
+    if (carouselRef.current) {
+      carouselRef.current.style.scrollSnapType = 'x mandatory';
+      carouselRef.current.style.cursor = 'grab';
+    }
+  };
+
+  const handleMouseUp = () => {
+    dragRef.current.isDown = false;
+    if (carouselRef.current) {
+      carouselRef.current.style.scrollSnapType = 'x mandatory';
+      carouselRef.current.style.cursor = 'grab';
+    }
+  };
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (!dragRef.current.isDown || !carouselRef.current) return;
+    e.preventDefault();
+    const x = e.pageX - carouselRef.current.offsetLeft;
+    const walk = (x - dragRef.current.startX) * 1.5;
+    carouselRef.current.scrollLeft = dragRef.current.scrollLeft - walk;
+  };
+
   return (
     <div className="screen-content offer-section">
       <p className="t-tag">Sua companheira espiritual está pronta! Veja abaixo 🙏</p>
@@ -297,7 +333,7 @@ function Screen9() {
         </div>
         <div className="plan-card featured">
           <div className="plan-badge">★ MAIS ESCOLHIDO</div>
-          <div className="plan-title">Plano Semestral</div>
+          <div className="plan-title">Plano Anual</div>
           <div className="plan-desc">O compromisso que transforma</div>
           <div className="plan-price-row">
             <span className="plan-price-old">R$179,40</span>
@@ -315,7 +351,15 @@ function Screen9() {
       <div className="testimonials-section">
         <h3 className="t-h3">Nosso Devocional é confiável?</h3>
         <p className="t-sub" style={{ marginTop: 4 }}>Sim! Aqui estão algumas avaliações de mulheres que já fazem parte da nossa comunidade 💙</p>
-        <div className="testimonial-carousel">
+        <div
+          className="testimonial-carousel"
+          ref={carouselRef}
+          onMouseDown={handleMouseDown}
+          onMouseLeave={handleMouseLeave}
+          onMouseUp={handleMouseUp}
+          onMouseMove={handleMouseMove}
+          style={{ cursor: 'grab' }}
+        >
           {[1, 2, 3, 4, 5].map(num => (
             <div key={num} className="testimonial-slide">
               <Image src={`/dep0${num}.jpeg`} alt={`Avaliação ${num}`} width={600} height={800} />
@@ -331,7 +375,7 @@ function Screen9() {
       </div>
       <a className="btn-cta checkout" href="https://pay.cakto.com.br/qyyom4c">EU QUERO MARIA COMIGO →</a>
 
-      <p className="t-small" style={{ marginTop: 12 }}>Plano Mensal R$29,90 · Plano Semestral R$137,00<br />Cancele quando quiser · Pagamento 100% seguro 🔒</p>
+      <p className="t-small" style={{ marginTop: 12 }}>Plano Mensal R$29,90 · Plano Anual R$137,00<br />Cancele quando quiser · Pagamento 100% seguro 🔒</p>
     </div>
   );
 }

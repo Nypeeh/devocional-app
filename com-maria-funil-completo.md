@@ -722,10 +722,10 @@ Descrição:      Para começar sua jornada
 CTA:            QUERO MARIA COMIGO →
 ```
 
-**Plano Semestral** (com badge "Mais escolhido")
+**Plano Anual** (com badge "Mais escolhido")
 ```
 Badge:          ★ MAIS ESCOLHIDO
-Título:         Plano Semestral
+Título:         Plano Anual
 Preço riscado:  ~~R$179,40~~
 Preço:          R$137,00 (equivale a R$22,90/mês)
 Economia:       Você economiza R$42,00
@@ -783,7 +783,7 @@ EU QUERO MARIA COMIGO →
 
 **Texto abaixo do botão** (Small, center, #6B7280)
 ```
-Plano Mensal R$29,90 · Plano Semestral R$137,00
+Plano Mensal R$29,90 · Plano Anual R$137,00
 Cancele quando quiser · Pagamento 100% seguro 🔒
 ```
 
