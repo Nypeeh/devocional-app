@@ -261,7 +261,7 @@ const features = [
 ];
 
 
-function Screen9({ onNext }: { onNext: (plan: string) => void }) {
+function Screen9() {
   return (
     <div className="screen-content offer-section">
       <p className="t-tag">Sua companheira espiritual está pronta! Veja abaixo 🙏</p>
@@ -393,7 +393,7 @@ export default function Home() {
         {screen === 7 && <Screen7 name={answers.name} onNext={() => go(8)} />}
         {screen === 8 && <Screen8 intention={answers.intention} onNext={() => go(9)} />}
 
-        {screen === 9 && <Screen9 onNext={() => {}} />}
+        {screen === 9 && <Screen9 />}
 
         {screen === 10 && <Screen10 name={answers.name} />}
 
