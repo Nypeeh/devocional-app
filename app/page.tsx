@@ -260,11 +260,6 @@ const features = [
   "Acesso ao Livro de Orações comunitário",
 ];
 
-const testimonials = [
-  { init: "K", name: "Keyla R.", loc: "São Paulo", text: "Eu acordava e já tinha aquela mensagem me esperando. Era como se alguém realmente estivesse orando por mim." },
-  { init: "A", name: "Ana Paula M.", loc: "Belo Horizonte", text: "Nunca consegui manter uma rotina espiritual. Com a Maria, tudo mudou. Ela me busca todo dia, e isso faz toda a diferença." },
-  { init: "F", name: "Fernanda S.", loc: "Curitiba", text: "Minha vida ficou mais leve depois que comecei. As orações chegam no momento certo, sempre com a palavra que eu precisava." },
-];
 
 function Screen9({ onNext }: { onNext: (plan: string) => void }) {
   return (
@@ -320,19 +315,10 @@ function Screen9({ onNext }: { onNext: (plan: string) => void }) {
       <div className="testimonials-section">
         <h3 className="t-h3">Nosso Devocional é confiável?</h3>
         <p className="t-sub" style={{ marginTop: 4 }}>Sim! Aqui estão algumas avaliações de mulheres que já fazem parte da nossa comunidade 💙</p>
-        <div className="testimonial-cards">
-          {testimonials.map(t => (
-            <div key={t.name} className="testimonial-card">
-              <div className="testimonial-header">
-                <div className="testimonial-avatar">{t.init}</div>
-                <div>
-                  <div className="testimonial-name">{t.name}</div>
-                  <div className="testimonial-location">{t.loc}</div>
-                </div>
-                <div className="testimonial-stars" style={{ marginLeft: "auto" }}>★★★★★</div>
-              </div>
-              <p className="testimonial-text">&quot;{t.text}&quot;</p>
-
+        <div className="testimonial-carousel">
+          {[1, 2, 3, 4, 5].map(num => (
+            <div key={num} className="testimonial-slide">
+              <Image src={`/dep0${num}.jpeg`} alt={`Avaliação ${num}`} width={600} height={800} />
             </div>
           ))}
         </div>
