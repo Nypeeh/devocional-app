@@ -285,33 +285,35 @@ function Screen9({ onNext }: { onNext: (plan: string) => void }) {
       </div>
       <div className="divider" />
       <div className="price-anchor">
-        <p>Muitas pessoas buscam esse tipo de acompanhamento espiritual em retiros e grupos presenciais que custam <strong>centenas de reais por mês</strong>.<br /><br />A Maria chega no seu WhatsApp todos os dias por menos de <strong>R$0,70 por dia</strong>.</p>
+        <p>Muitas pessoas buscam esse tipo de acompanhamento espiritual em retiros e grupos presenciais que custam <strong>centenas de reais por mês</strong>.<br /><br />A Maria chega no seu WhatsApp todos os dias por menos de <strong>R$1,00 por dia</strong>.</p>
       </div>
       <div className="plans-grid">
         <div className="plan-card">
           <div className="plan-title">Plano Mensal</div>
           <div className="plan-desc">Para começar sua jornada</div>
           <div className="plan-price-row">
-            <span className="plan-price-new">R$19,90</span>
+            <span className="plan-price-new">R$29,90</span>
             <span className="plan-price-period">/mês</span>
           </div>
           <div className="plan-cta">
-            <button className="btn-primary checkout" onClick={() => onNext("mensal")}>QUERO MARIA COMIGO →</button>
+            <a className="btn-primary checkout" href="https://pay.cakto.com.br/6zwb7c9_872899">QUERO MARIA COMIGO →</a>
           </div>
+
         </div>
         <div className="plan-card featured">
           <div className="plan-badge">★ MAIS ESCOLHIDO</div>
-          <div className="plan-title">Plano Anual</div>
+          <div className="plan-title">Plano Semestral</div>
           <div className="plan-desc">O compromisso que transforma</div>
           <div className="plan-price-row">
-            <span className="plan-price-old">R$238,80</span>
-            <span className="plan-price-new">R$87,00</span>
+            <span className="plan-price-old">R$179,40</span>
+            <span className="plan-price-new">R$137,00</span>
           </div>
-          <div style={{ fontSize: 13, color: "var(--text-sub)", marginTop: 2 }}>equivale a R$7,25/mês</div>
-          <span className="plan-savings">Você economiza R$151,80 🎉</span>
+          <div style={{ fontSize: 13, color: "var(--text-sub)", marginTop: 2 }}>equivale a R$22,90/mês</div>
+          <span className="plan-savings">Você economiza R$42,00 🎉</span>
           <div className="plan-cta">
-            <button className="btn-cta checkout" onClick={() => onNext("anual")}>QUERO MARIA COMIGO →</button>
+            <a className="btn-cta checkout" href="https://pay.cakto.com.br/qyyom4c">QUERO MARIA COMIGO →</a>
           </div>
+
         </div>
       </div>
       <div className="divider" />
@@ -341,8 +343,9 @@ function Screen9({ onNext }: { onNext: (plan: string) => void }) {
         <h3 className="t-h3">Tem garantia?</h3>
         <p className="t-body" style={{ marginTop: 8 }}>Sim! Estamos tão confiantes que o nosso Devocional vai transformar a sua rotina espiritual que garantimos reembolso total no prazo de <strong>30 dias</strong> após a compra. Sem perguntas. Sem burocracia.</p>
       </div>
-      <button className="btn-cta checkout" onClick={() => onNext("anual")}>EU QUERO MARIA COMIGO →</button>
-      <p className="t-small" style={{ marginTop: 12 }}>Plano Mensal R$19,90 · Plano Anual R$87,00<br />Cancele quando quiser · Pagamento 100% seguro 🔒</p>
+      <a className="btn-cta checkout" href="https://pay.cakto.com.br/qyyom4c">EU QUERO MARIA COMIGO →</a>
+
+      <p className="t-small" style={{ marginTop: 12 }}>Plano Mensal R$29,90 · Plano Semestral R$137,00<br />Cancele quando quiser · Pagamento 100% seguro 🔒</p>
     </div>
   );
 }
@@ -362,9 +365,10 @@ function Screen10({ name }: { name: string }) {
         <div className="activation-steps">
           <p>Clique no botão abaixo para abrir o WhatsApp e enviar uma mensagem para a Maria. Isso ativa sua conta e confirma que chegamos até você. 💙</p>
         </div>
-        <a href={waLink} target="_blank" rel="noopener noreferrer" style={{ width: "100%", textDecoration: "none" }}>
-          <button className="btn-whatsapp" style={{ width: "100%" }}>💬 ABRIR WHATSAPP E ATIVAR →</button>
+        <a href={waLink} target="_blank" rel="noopener noreferrer" className="btn-whatsapp">
+          💬 ABRIR WHATSAPP E ATIVAR →
         </a>
+
         <p className="t-small">Caso não receba mensagem em até 5 minutos, entre em contato pelo e-mail suporte@commaria.com.br</p>
       </div>
     </div>
@@ -403,11 +407,8 @@ export default function Home() {
         {screen === 7 && <Screen7 name={answers.name} onNext={() => go(8)} />}
         {screen === 8 && <Screen8 intention={answers.intention} onNext={() => go(9)} />}
 
-        {screen === 9 && <Screen9 onNext={v => {
-          setAnswers(a => ({ ...a, plan: v }));
-          if (v === "mensal") window.location.href = "https://pay.cakto.com.br/6zwb7c9_872899";
-          if (v === "anual") window.location.href = "https://pay.cakto.com.br/qyyom4c";
-        }} />}
+        {screen === 9 && <Screen9 onNext={() => {}} />}
+
         {screen === 10 && <Screen10 name={answers.name} />}
 
         {screen < 10 && <div className="funnel-footer">Feito com ♡ e fé · Com Maria</div>}

@@ -284,6 +284,10 @@ h3.t-h3 {
 =========================== */
 .btn-primary {
   width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
   background: var(--blue-primary);
   color: #fff;
   font-family: 'Inter', sans-serif;
@@ -298,6 +302,7 @@ h3.t-h3 {
   box-shadow: 0 4px 12px rgba(26, 86, 219, 0.3);
   text-transform: uppercase;
 }
+
 
 .btn-primary:hover {
   background: var(--blue-dark);
@@ -316,6 +321,10 @@ h3.t-h3 {
 
 .btn-cta {
   width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
   background: var(--green-primary);
   color: #fff;
   font-family: 'Inter', sans-serif;
@@ -331,6 +340,7 @@ h3.t-h3 {
   transition: background 0.2s, box-shadow 0.2s, transform 0.1s;
   animation: pulse-cta 2s ease-in-out infinite;
 }
+
 
 .btn-cta:hover {
   background: var(--green-hover);
@@ -349,6 +359,10 @@ h3.t-h3 {
 
 .btn-whatsapp {
   width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
   background: #25D366;
   color: #fff;
   font-family: 'Inter', sans-serif;
@@ -364,6 +378,7 @@ h3.t-h3 {
   transition: background 0.2s, transform 0.1s;
   animation: pulse-cta 2s ease-in-out infinite;
 }
+
 
 .btn-whatsapp:hover {
   background: #22bf5b;

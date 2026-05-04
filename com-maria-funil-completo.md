@@ -707,7 +707,7 @@ espiritual em retiros e grupos presenciais
 que custam centenas de reais por mês.
 
 A Maria chega no seu WhatsApp todos os dias
-por menos de R$0,70 por dia.
+por menos de R$1,00 por dia.
 ```
 
 ---
@@ -717,7 +717,7 @@ por menos de R$0,70 por dia.
 **Plano Mensal**
 ```
 Título:         Plano Mensal
-Preço:          R$19,90/mês
+Preço:          R$29,90/mês
 Descrição:      Para começar sua jornada
 CTA:            QUERO MARIA COMIGO →
 ```
@@ -726,9 +726,9 @@ CTA:            QUERO MARIA COMIGO →
 ```
 Badge:          ★ MAIS ESCOLHIDO
 Título:         Plano Semestral
-Preço riscado:  ~~R$119,40~~
-Preço:          R$89,00 (equivale a R$14,83/mês)
-Economia:       Você economiza R$30,40
+Preço riscado:  ~~R$179,40~~
+Preço:          R$137,00 (equivale a R$22,90/mês)
+Economia:       Você economiza R$42,00
 Descrição:      O compromisso que transforma
 CTA:            QUERO MARIA COMIGO →
 ```
@@ -783,7 +783,7 @@ EU QUERO MARIA COMIGO →
 
 **Texto abaixo do botão** (Small, center, #6B7280)
 ```
-Plano Mensal R$19,90 · Plano Semestral R$89,00
+Plano Mensal R$29,90 · Plano Semestral R$137,00
 Cancele quando quiser · Pagamento 100% seguro 🔒
 ```
 
