@@ -1,27 +1,893 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap');
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+:root {
+  /* Primária — Azul Mariano */
+  --blue-primary: #1A56DB;
+  --blue-dark: #1E429F;
+  --blue-light: #E8EFFF;
+  --blue-mid: #F0F5FF;
+
+  /* Secundária — Dourado */
+  --gold-primary: #C9921A;
+  --gold-light: #FEF3C7;
+
+  /* Ação / CTA */
+  --green-primary: #16A34A;
+  --green-hover: #15803D;
+
+  /* Neutros */
+  --text-main: #111827;
+  --text-body: #374151;
+  --text-sub: #6B7280;
+  --text-placeholder: #9CA3AF;
+  --border: #E5E7EB;
+  --bg-white: #FFFFFF;
+  --bg-soft: #F9FAFB;
+
+  /* Feedback */
+  --error: #DC2626;
+  --success: #16A34A;
+}
+
+html, body {
+  height: 100%;
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  color: var(--text-body);
+  background: var(--bg-white);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
+/* ===========================
+   LAYOUT GERAL DO FUNIL
+=========================== */
+.funnel-wrapper {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: var(--bg-white);
+}
+
+.funnel-container {
+  width: 100%;
+  max-width: 480px;
+  min-height: 100dvh;
+  padding: 0 24px 48px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ===========================
+   HEADER (ícone + barra)
+=========================== */
+.funnel-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 24px;
+  gap: 14px;
+  flex-shrink: 0;
+}
+
+.mary-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--blue-light);
+  border: 2px solid #C7D9FF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  line-height: 1;
+  box-shadow: 0 2px 8px rgba(26, 86, 219, 0.12);
+}
+
+.progress-track {
+  width: 100%;
+  height: 6px;
+  background: var(--border);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: var(--blue-primary);
+  border-radius: 999px;
+  transition: width 0.4s ease;
+}
+
+/* ===========================
+   CONTEÚDO DA TELA
+=========================== */
+.screen-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding-top: 28px;
+  gap: 0;
+  animation: fadeSlideIn 0.35s ease;
+}
+
+@keyframes fadeSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
   }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===========================
+   TIPOGRAFIA
+=========================== */
+.t-tag {
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: var(--blue-primary);
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: 12px;
+}
+
+h1.t-h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--text-main);
+  line-height: 1.25;
+  text-align: center;
+  margin-bottom: 12px;
+}
+
+h2.t-h2 {
+  font-family: 'Inter', sans-serif;
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--text-main);
+  line-height: 1.3;
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+h2.t-h2.blue {
+  color: var(--blue-primary);
+}
+
+h3.t-h3 {
+  font-family: 'Inter', sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--blue-primary);
+  line-height: 1.4;
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+.t-body {
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--text-body);
+  line-height: 1.65;
+  text-align: center;
+}
+
+.t-sub {
+  font-size: 14px;
+  color: var(--text-sub);
+  text-align: center;
+  line-height: 1.5;
+}
+
+.t-small {
+  font-size: 13px;
+  color: var(--text-sub);
+  text-align: center;
+  line-height: 1.5;
+}
+
+.t-instruction {
+  font-size: 14px;
+  color: var(--text-sub);
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+/* ===========================
+   CARDS DE OPÇÃO
+=========================== */
+.options-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 20px;
+  margin-bottom: 24px;
+}
+
+.option-card {
+  background: var(--bg-white);
+  border: 1.5px solid var(--border);
+  border-radius: 12px;
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+  text-align: left;
+  width: 100%;
+  font-family: 'Inter', sans-serif;
+  font-size: 15px;
+  color: var(--text-main);
+  line-height: 1.45;
+}
+
+.option-card:hover {
+  border-color: var(--blue-primary);
+  background: var(--blue-mid);
+}
+
+.option-card.selected {
+  border: 2px solid var(--blue-primary);
+  background: var(--blue-light);
+  box-shadow: 0 0 0 3px rgba(26, 86, 219, 0.08);
+}
+
+.option-emoji {
+  font-size: 24px;
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+.option-text {
+  flex: 1;
+}
+
+.option-check {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 2px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.2s;
+}
+
+.option-card.selected .option-check {
+  background: var(--blue-primary);
+  border-color: var(--blue-primary);
+  color: white;
+}
+
+/* ===========================
+   BOTÕES
+=========================== */
+.btn-primary {
+  width: 100%;
+  background: var(--blue-primary);
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  border: none;
+  border-radius: 10px;
+  padding: 16px 32px;
+  cursor: pointer;
+  transition: background 0.2s, box-shadow 0.2s, transform 0.1s;
+  box-shadow: 0 4px 12px rgba(26, 86, 219, 0.3);
+  text-transform: uppercase;
+}
+
+.btn-primary:hover {
+  background: var(--blue-dark);
+  box-shadow: 0 6px 18px rgba(26, 86, 219, 0.35);
+}
+
+.btn-primary:active {
+  transform: scale(0.98);
+}
+
+.btn-primary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.btn-cta {
+  width: 100%;
+  background: var(--green-primary);
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  border: none;
+  border-radius: 10px;
+  padding: 18px 32px;
+  cursor: pointer;
+  text-transform: uppercase;
+  box-shadow: 0 4px 16px rgba(22, 163, 74, 0.35);
+  transition: background 0.2s, box-shadow 0.2s, transform 0.1s;
+  animation: pulse-cta 2s ease-in-out infinite;
+}
+
+.btn-cta:hover {
+  background: var(--green-hover);
+  animation: none;
+  box-shadow: 0 6px 20px rgba(22, 163, 74, 0.45);
+}
+
+.btn-cta:active {
+  transform: scale(0.98);
+}
+
+@keyframes pulse-cta {
+  0%, 100% { box-shadow: 0 4px 16px rgba(22, 163, 74, 0.35); }
+  50% { box-shadow: 0 4px 28px rgba(22, 163, 74, 0.6); }
+}
+
+.btn-whatsapp {
+  width: 100%;
+  background: #25D366;
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  border: none;
+  border-radius: 10px;
+  padding: 18px 32px;
+  cursor: pointer;
+  text-transform: uppercase;
+  box-shadow: 0 4px 16px rgba(37, 211, 102, 0.35);
+  transition: background 0.2s, transform 0.1s;
+  animation: pulse-cta 2s ease-in-out infinite;
+}
+
+.btn-whatsapp:hover {
+  background: #22bf5b;
+  animation: none;
+}
+
+/* ===========================
+   INPUT / TEXTAREA
+=========================== */
+.form-input,
+.form-textarea {
+  width: 100%;
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  padding: 14px 16px;
+  font-family: 'Inter', sans-serif;
+  font-size: 15px;
+  color: var(--text-main);
+  background: var(--bg-white);
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  resize: none;
+}
+
+.form-input::placeholder,
+.form-textarea::placeholder {
+  color: var(--text-placeholder);
+  font-style: italic;
+}
+
+.form-input:focus,
+.form-textarea:focus {
+  border-color: var(--blue-primary);
+  box-shadow: 0 0 0 3px rgba(26, 86, 219, 0.15);
+}
+
+/* ===========================
+   RODAPÉ DO FUNIL
+=========================== */
+.funnel-footer {
+  text-align: center;
+  font-size: 13px;
+  color: var(--text-sub);
+  margin-top: 20px;
+}
+
+/* ===========================
+   TELA 0 — LANDING
+=========================== */
+.landing-video-wrapper {
+  width: 100%;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
+  background: #000;
+  aspect-ratio: 16/9;
+  margin: 24px 0 20px;
+  position: relative;
+  cursor: pointer;
+}
+
+.landing-video-placeholder {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #1a2a6c, #2a52be, #b21f1f);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+
+.video-play-btn {
+  width: 68px;
+  height: 68px;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+  transition: transform 0.2s, background 0.2s;
+}
+
+.video-play-btn:hover {
+  transform: scale(1.08);
+  background: #fff;
+}
+
+.video-play-icon {
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 12px 0 12px 22px;
+  border-color: transparent transparent transparent var(--blue-primary);
+  margin-left: 4px;
+}
+
+.landing-support-text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--text-sub);
+  margin-top: 12px;
+}
+
+/* ===========================
+   TELA 5 — PLAYER DE ÁUDIO
+=========================== */
+.audio-player-wrapper {
+  background: var(--blue-light);
+  border: 1px solid #C7D9FF;
+  border-radius: 14px;
+  padding: 20px;
+  margin: 20px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.audio-controls {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.audio-play-btn {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--blue-primary);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: background 0.2s, transform 0.1s;
+  box-shadow: 0 3px 10px rgba(26, 86, 219, 0.3);
+}
+
+.audio-play-btn:hover {
+  background: var(--blue-dark);
+}
+
+.audio-play-btn:active {
+  transform: scale(0.95);
+}
+
+.audio-play-icon {
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 7px 0 7px 13px;
+  border-color: transparent transparent transparent #fff;
+  margin-left: 3px;
+}
+
+.audio-pause-icon {
+  display: flex;
+  gap: 4px;
+}
+
+.audio-pause-icon span {
+  display: block;
+  width: 3px;
+  height: 14px;
+  background: #fff;
+  border-radius: 2px;
+}
+
+.audio-bar-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.audio-progress-track {
+  width: 100%;
+  height: 4px;
+  background: #C7D9FF;
+  border-radius: 999px;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.audio-progress-fill {
+  height: 100%;
+  background: var(--blue-primary);
+  border-radius: 999px;
+  transition: width 0.5s linear;
+}
+
+.audio-time {
+  font-size: 12px;
+  color: var(--blue-dark);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ===========================
+   TELA 8 — TRANSIÇÃO
+=========================== */
+.transition-loader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  margin: 32px 0;
+}
+
+.transition-bar-track {
+  width: 100%;
+  height: 10px;
+  background: var(--border);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.transition-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--blue-primary), #6CA0F7);
+  border-radius: 999px;
+  transition: width 0.1s linear;
+}
+
+.intention-display {
+  background: var(--blue-light);
+  border: 1px solid #C7D9FF;
+  border-radius: 14px;
+  padding: 20px 24px;
+  margin: 16px 0 24px;
+  font-family: 'Playfair Display', serif;
+  font-size: 17px;
+  color: var(--text-main);
+  text-align: center;
+  line-height: 1.6;
+  font-style: italic;
+}
+
+/* ===========================
+   TELA 9 — OFERTA
+=========================== */
+.offer-section {
+  padding: 20px 0;
+}
+
+.features-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 16px 0 24px;
+  text-align: left;
+}
+
+.feature-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 15px;
+  color: var(--text-main);
+  line-height: 1.45;
+}
+
+.feature-icon {
+  font-size: 18px;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.price-anchor {
+  background: var(--gold-light);
+  border-radius: 12px;
+  padding: 18px 20px;
+  margin: 16px 0 24px;
+  text-align: center;
+}
+
+.price-anchor p {
+  font-size: 15px;
+  color: var(--text-body);
+  line-height: 1.6;
+}
+
+.price-anchor strong {
+  color: var(--gold-primary);
+  font-weight: 700;
+}
+
+.plans-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-bottom: 24px;
+}
+
+.plan-card {
+  border: 1.5px solid var(--border);
+  border-radius: 14px;
+  padding: 20px;
+  background: var(--bg-white);
+  cursor: pointer;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  position: relative;
+}
+
+.plan-card:hover {
+  border-color: var(--blue-primary);
+  box-shadow: 0 2px 12px rgba(26, 86, 219, 0.1);
+}
+
+.plan-card.featured {
+  border: 2px solid var(--blue-primary);
+  background: var(--blue-mid);
+}
+
+.plan-badge {
+  position: absolute;
+  top: -1px;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  background: var(--blue-primary);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  padding: 4px 14px;
+  border-radius: 999px;
+  white-space: nowrap;
+  text-transform: uppercase;
+}
+
+.plan-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-main);
+  margin-bottom: 4px;
+}
+
+.plan-desc {
+  font-size: 13px;
+  color: var(--text-sub);
+  margin-bottom: 12px;
+}
+
+.plan-price-row {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.plan-price-old {
+  font-size: 14px;
+  color: var(--text-sub);
+  text-decoration: line-through;
+}
+
+.plan-price-new {
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--text-main);
+  line-height: 1;
+}
+
+.plan-price-period {
+  font-size: 13px;
+  color: var(--text-sub);
+}
+
+.plan-savings {
+  display: inline-block;
+  background: #DCFCE7;
+  color: var(--green-primary);
+  font-size: 12px;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 999px;
+  margin-top: 8px;
+}
+
+.plan-cta {
+  margin-top: 14px;
+}
+
+/* TESTIMONIALS */
+.testimonials-section {
+  margin: 8px 0 24px;
+}
+
+.testimonial-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 14px;
+}
+
+.testimonial-card {
+  background: var(--bg-soft);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px;
+  text-align: left;
+}
+
+.testimonial-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.testimonial-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--blue-primary), #6CA0F7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-weight: 700;
+  font-size: 16px;
+  flex-shrink: 0;
+}
+
+.testimonial-name {
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--text-main);
+}
+
+.testimonial-location {
+  font-size: 12px;
+  color: var(--text-sub);
+}
+
+.testimonial-stars {
+  color: var(--gold-primary);
+  font-size: 14px;
+  letter-spacing: 2px;
+}
+
+.testimonial-text {
+  font-size: 14px;
+  color: var(--text-body);
+  line-height: 1.55;
+  font-style: italic;
+}
+
+/* GUARANTEE */
+.guarantee-section {
+  background: linear-gradient(135deg, #f0f9ff, #e8efff);
+  border: 1px solid #C7D9FF;
+  border-radius: 16px;
+  padding: 24px 20px;
+  margin: 8px 0 24px;
+  text-align: center;
+}
+
+.guarantee-icon {
+  font-size: 48px;
+  margin-bottom: 12px;
+  display: block;
+}
+
+/* ===========================
+   TELA 10 — PÓS-PAGAMENTO
+=========================== */
+.success-screen {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding-top: 20px;
+}
+
+.confetti-icon {
+  font-size: 64px;
+  animation: bounce-icon 1s ease infinite alternate;
+}
+
+@keyframes bounce-icon {
+  from { transform: translateY(0px); }
+  to { transform: translateY(-10px); }
+}
+
+.activation-steps {
+  background: var(--bg-soft);
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  padding: 20px;
+  text-align: left;
+  margin: 8px 0;
+}
+
+.activation-steps p {
+  font-size: 15px;
+  color: var(--text-body);
+  line-height: 1.6;
+}
+
+/* ===========================
+   DIVIDER
+=========================== */
+.divider {
+  width: 100%;
+  height: 1px;
+  background: var(--border);
+  margin: 24px 0;
+}
+
+.spacer-sm { height: 12px; }
+.spacer-md { height: 20px; }
+.spacer-lg { height: 28px; }
+
+/* ===========================
+   RESPONSIVIDADE
+=========================== */
+@media (max-width: 380px) {
+  h1.t-h1 { font-size: 26px; }
+  h2.t-h2 { font-size: 19px; }
+  .plan-price-new { font-size: 22px; }
 }
